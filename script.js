@@ -17,9 +17,13 @@ function snus(n){
             val.innerHTML = "Снюс: " + snusval + " | Снюскойнов: " + snuscoins + cheats + hardmode
             var text = document.getElementById("text");
             var i = n
+            while(Math.floor(i/10) > 0){
+                text.innerHTML += " снюс  снюс  снюс  снюс  снюс снюс  снюс  снюс  снюс  снюс";
+                i -= 10
+            }
             while(i > 0){
-            text.innerHTML += " снюс";
-            i--
+                text.innerHTML += " снюс";
+                i--
             }
         }
     } else {alert("Тебе нужно " + snuscost*n + " снюскойнов!\n" + snuscoins + "/" + snuscost*n)}
@@ -50,6 +54,10 @@ function cheat(){
         alert("Вы включили сложный режим. Пути надаз уже нет.")
         snuscost = 50
         hardmode = " | Сложный режим"
+    } else if(code == "easymode") {
+        alert("Вы включили лёгкий режим. Пути надаз уже нет.")
+        snuscost = 5
+        hardmode = " | Лёгкий режим"
     } else if(code == "sellsnus") {
         alert("Вы продали весь свой снюс (" + (snusval-1) + ") за " + (snusval-1)*snuscost + " снюскойнов. Но зачем?")
         snuscoins += (snusval-1)*snuscost
@@ -81,4 +89,24 @@ function editvar(){
         var x = prompt("Введите коллекцию снюса: ", "")
         text.innerHTML = x
     } else {alert("Переменная " + varname + " не найдена. Напишите help для списка переменных.")}
+}
+
+//Купить [ ] снюса
+function custom(){
+    var count = prompt("Сколько снюса купить?", 1000)
+    snus(count*1)
+}
+
+//Рестарт
+function restart(){
+    r = confirm("Вы точно хотите начать сначала?")
+    if(r == true){
+        snusval = 1
+        snuscoins = 100
+        snuscost = 10
+        cheat = ""
+        hardmode = ""
+        text = document.getElementById("text")
+        text.innerHTML = "Снюс"
+    }
 }
