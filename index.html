@@ -8,19 +8,20 @@
     </head>
     <body>
         <hr />
-        <div align="center">
+        <div>
             <input type="button" onclick="snus(1)" value="Купить снюс">
             <input type="button" onclick="snus(10)" value="Купить 10 снюса">
-            <input type="button" onclick="cheat()" value="Включить читы">
-        </div>
-        <p></p>
-        <div align="center">
+            <input type="button" onclick="snus(100)" value="Купить 100 снюса">
+            <input type="button" onclick="custom()" value="Купить [ ] снюса">
             <input type="button" onclick="snus(Math.floor(snuscoins/snuscost))" value="Купить максимум снюса (10)" id="buyall">
+            <p></p>
+            <input type="button" onclick="cheat()" value="Включить читы">
+            <input type="button" onclick="restart()" value="Начать сначала">
+            <hr />
+            <p id="val">Снюс: 1 | Снюскойнов: 100</p>
+            <hr />
+            <p>Коллекция снюса:</p>
         </div>
-        <hr />
-        <p class="cen" id="val">Снюс: 1 | Снюскойнов: 100</p>
-        <hr />
-        <p class="cen">Коллекция снюса:</p>
         <p id="text">Снюс</p>
         <hr />
     </body>
