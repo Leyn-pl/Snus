@@ -67,6 +67,8 @@ function cheat(){
     } else if(code == "editvar") {
         editvar()
         cheats = " | Читы"
+    } else if(code == "help") {
+        alert("Нет, это не так просто.")
     } else if(code != "" && code != null){alert('Чит-код "' + code + '" не найден')}
 }
 
@@ -101,12 +103,6 @@ function custom(){
 function restart(){
     r = confirm("Вы точно хотите начать сначала?")
     if(r == true){
-        snusval = 1
-        snuscoins = 100
-        snuscost = 10
-        cheat = ""
-        hardmode = ""
-        text = document.getElementById("text")
-        text.innerHTML = "Снюс"
+        location.reload()
     }
 }
