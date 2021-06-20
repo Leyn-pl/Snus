@@ -2,3 +2,7 @@ div {
     text-align: center;
     align: center;
 }
+a {
+    text-align: left;
+    font-size: 65%;
+}
