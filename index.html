@@ -1,30 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
     <head>
-        <lang="ru">
         <title>Snus</title>
         <script src="script.js"></script>
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <hr />
-        <div>
-            <input type="button" onclick="snus(1)" value="Купить снюс">
-            <input type="button" onclick="snus(10)" value="Купить 10 снюса">
-            <input type="button" onclick="snus(100)" value="Купить 100 снюса">
-            <input type="button" onclick="custom()" value="Купить [ ] снюса">
-            <input type="button" onclick="snus(Math.floor(snuscoins/snuscost))" value="Купить максимум снюса (10)" id="buyall">
+        <div id="buttons" class="mid">
+            <input class="button" type="button" onclick="snus(1)" value="Купить снюс">
+            <input class="button" type="button" onclick="snus(10)" value="Купить 10 снюса">
+            <input class="button" type="button" onclick="snus(100)" value="Купить 100 снюса">
+            <input class="button" type="button" onclick="custom()" value="Купить [ ] снюса">
+            <input class="button" type="button" onclick="snus(Math.floor(snuscoins/snuscost))" value="Купить максимум снюса (10)" id="buyall">
             <p></p>
-            <input type="button" onclick="cheat()" value="Включить читы">
-            <input type="button" onclick="restart()" value="Начать сначала">
-            <hr />
-            <p id="val">Снюс: 1 | Снюскойнов: 100</p>
-            <hr />
-            <p>Коллекция снюса:</p>
+            <input class="button" type="button" onclick="cheat()" value="Включить читы">
+            <input class="button" type="button" onclick="restart()" value="Перезагрузить">
         </div>
-        <p id="text">Снюс</p>
         <hr />
-        <a title="Гитхаб (исходный код)" href="https://github.com/Leyn-pl/Snus">GitHub</a>
-        <a title="Мой дискорд сервер" href="https://discord.gg/CrvESbFBrR">Discord</a>
+        <div id="vars" class="mid">
+            <p id="val">Снюс: 1 | Снюскойнов: 100</p>
+        </div>
+        <hr />
+        <div id="col">
+            <p class="mid">Коллекция снюса:</p>
+            <p id="text">Снюс</p>
+        </div>
+        <hr />
+        <div id="other">
+            <a target="_blank" title="Гитхаб (исходный код)" href="https://github.com/Leyn-pl/Snus">GitHub</a>
+            <a target="_blank" title="Мой дискорд сервер" href="https://discord.gg/CrvESbFBrR">Discord</a>
+        </div>
     </body>
 </html>
