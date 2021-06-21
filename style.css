@@ -1,8 +1,14 @@
-div {
+body {
+    color: #000000;
+}
+.button:hover {
+    cursor: pointer;
+}
+.mid {
     text-align: center;
     align: center;
 }
-a {
+#other {
     text-align: left;
     font-size: 65%;
 }
