@@ -1,3 +1,5 @@
+//Snus by LEYN v1.2
+
 alert('СНЮС\nСоздатель этого (Лён) наюзался снюса. Нажимайте "Купить снюс". Вам нужно 10 снюскойнов чтобы купить снюс. Чем больше у вас снюса, тем больше вы получаете снюскойнов  в секунду.')
 var snusval = 1
 var snuscoins = 100
@@ -9,7 +11,8 @@ var hardmode = ""
 function snus(n){
     var buy = true
     if(snuscoins >= snuscost*n){
-        if(n > 10){buy = confirm("Вы потратите все свои снюскойны (" + n*snuscost + ") на покупку " + n + " снюса")}
+        if(n*snuscost > 100){buy = confirm("Вы потратите много снюскойнов (" + n*snuscost + ") на покупку " + n + " снюса")}
+        if(n*snuscost > 1000){buy = confirm("Вы потратите очень много снюскойнов (" + n*snuscost + ") на покупку " + n + " снюса")}
         if(buy == true){
             snusval += 1*n
             snuscoins -= snuscost*n
@@ -27,6 +30,8 @@ function snus(n){
             }
         }
     } else {alert("Тебе нужно " + snuscost*n + " снюскойнов!\n" + snuscoins + "/" + snuscost*n)}
+    var max = document.getElementById("buyall");
+    max.value = "Купить максимум снюса (" +  Math.floor(snuscoins/snuscost) + ")"
 }
 
 //Добавление снюскойнов
@@ -42,10 +47,15 @@ setInterval(addsc, 1000)
 //Читы
 function cheat(){
     code = prompt("Введите чит-код:", "");
-    if(code == "100sec"){
-        alert("Вы получили " + Math.ceil(snusval/10)*100 + " снюскойнов, сэкономив 100 секунд своей жизни.")
-        snuscoins += Math.ceil(snusval/10)*100
-        cheats = " | Читы"
+    if(code == "skiptime"){
+        var sec = prompt("Сколько секунд вы хотите скипнуть? (до 1000)", 100)
+        if(sec > 1000){
+            alert('Для кого написано "до 1000"?')
+        } else if(isNaN(sec) != true) {
+            alert("Вы получили " + Math.ceil(snusval/10)*sec + " снюскойнов, сэкономив " + sec + " секунд своей жизни.");
+            snuscoins += Math.ceil(snusval/10)*sec;
+            cheats = " | Читы"
+        } else {alert("Введите число!")}
     } else if(code == "imlazy") {
         alert("Вы получили 10000 снюскойнов. Тебе реально лень ждать?")
         snuscoins  += 10000
@@ -64,11 +74,19 @@ function cheat(){
         snusval = 1
         var text = document.getElementById("text")
         text.innerHTML = "Снюс";
+    } else if(code == "buildfactory") {
+        alert("Вы построили фабрику снюса. Больше снюскойнов! (Стоп, а это легально?)");
+        setInterval(addsc, 1000);
+        cheats = " | Читы";
     } else if(code == "editvar") {
         editvar()
         cheats = " | Читы"
     } else if(code == "help") {
-        alert("Нет, это не так просто.")
+        alert("Нет, это не так просто.");
+    } else if(code == "snussale") {
+        alert("РАСПРОДАЖА СНЮСА!!! ВСЕГО 1 СНЮСКОЙН!!!");
+        snuscost = 1;
+        cheats = " | Читы";
     } else if(code != "" && code != null){alert('Чит-код "' + code + '" не найден')}
 }
 
@@ -79,24 +97,34 @@ function editvar(){
     if(varname == "help"){
         alert("snusval - количество снюса, snuscoins - снюскойны, snuscost - цена снюса, text - коллекция снюса.")
     } else if(varname == "snusval") {
-        var x = prompt("Введите количество снюса: ", snusval)
-        snusval = x*1
+        let x = prompt("Введите количество снюса: ", snusval)
+        if(isNaN(x) != true){
+            snusval = x*1
+        }else{alert("Введите число!")}
     } else if(varname == "snuscoins") {
-        var x = prompt("Введите количество снюскойнов: ", snuscoins)
-        snuscoins = x*1
+        let x = prompt("Введите количество снюскойнов: ", snuscoins)
+        if(isNaN(x) != true){
+            snuscoins = x*1
+        }else{alert("Введите число!")}
     } else if(varname == "snuscost") {
-        var x = prompt("Введите цену снюса: ", snuscost)
-        snuscost = x*1
+        let x = prompt("Введите цену снюса: ", snuscost)
+        if(isNaN(x) != true){
+            snuscost = x*1
+        }else{alert("Введите число!")}
     } else if(varname == "text") {
-        var x = prompt("Введите коллекцию снюса: ", "")
+        let x = prompt("Введите коллекцию снюса: ", "")
         text.innerHTML = x
-    } else {alert("Переменная " + varname + " не найдена. Напишите help для списка переменных.")}
+    } else {alert('Переменная "' + varname + '" не найдена. Напишите help для списка переменных.')}
 }
 
 //Купить [ ] снюса
 function custom(){
-    var count = prompt("Сколько снюса купить?", 1000)
-    snus(count*1)
+    let count = prompt("Сколько снюса купить?", 1000)
+    if(isNaN(count) != true){
+        snus(count*1)
+    }else{
+        alert("Введите число!")
+    }
 }
 
 //Рестарт
@@ -106,3 +134,11 @@ function restart(){
         location.reload()
     }
 }
+
+function timealert(){
+    let x = confirm("Ты играешь уже пол часа. Тебе реально понравилось?");
+    if(x){
+        alert("Ого, да как вообще можно в это играть -_-")
+    } else {restart()}
+}
+setTimeout(timealert, 1800000)
