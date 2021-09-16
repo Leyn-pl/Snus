@@ -2,24 +2,32 @@
 <html lang="ru">
     <head>
         <title>Snus</title>
-        <script src="script.js"></script>
+        <script src="snuscode.js"></script>
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <hr />
         <div id="buttons" class="mid">
-            <input class="button" type="button" onclick="snus(1)" value="Купить снюс">
+            <input class="button" type="button" onclick="snus(1)" value="Купить 1 снюс">
             <input class="button" type="button" onclick="snus(10)" value="Купить 10 снюса">
             <input class="button" type="button" onclick="snus(100)" value="Купить 100 снюса">
-            <input class="button" type="button" onclick="custom()" value="Купить [ ] снюса">
+            <input class="button" type="button" onclick="scustom()" value="Купить [ ] снюса">
             <input class="button" type="button" onclick="snus(Math.floor(snuscoins/snuscost))" value="Купить максимум снюса (10)" id="buyall">
+            <p></p>
+            <input class="button" type="button" onclick="vkid(1)" value="Вкинуть 1 снюс">
+            <input class="button" type="button" onclick="vkid(10)" value="Вкинуть 10 снюса">
+            <input class="button" type="button" onclick="vkid(100)" value="Вкинуть 100 снюса">
+            <input class="button" type="button" onclick="vcustom()" value="Вкинуть [ ] снюса">
+            <input class="button" type="button" onclick="vkid(snusval)" value="Вкинуться всем снюсом" id="vkidall">
             <p></p>
             <input class="button" type="button" onclick="cheat()" value="Включить читы">
             <input class="button" type="button" onclick="restart()" value="Перезагрузить">
+            <input class="button" type="button" id="hbutton" onclick="endgame()" value="Узнать чит-код">
         </div>
         <hr />
         <div id="vars" class="mid">
-            <p id="val">Снюс: 1 | Снюскойнов: 100</p>
+            <p id="val">Снюс: 1 | Снюскойнов: 100 | Снюа вкинуто: 0</p>
+            <p id="val2">Цена снюса: 10 | Снюскойнов в секунду: 1</p>
         </div>
         <hr />
         <div id="col">
@@ -28,8 +36,10 @@
         </div>
         <hr />
         <div id="other">
-            <a target="_blank" title="Гитхаб (исходный код)" href="https://github.com/Leyn-pl/Snus">GitHub</a>
-            <a target="_blank" title="Мой дискорд сервер" href="https://discord.gg/CrvESbFBrR">Discord</a>
+            <a target="_blank" title="Гитхаб (исходный код)" href="https://github.com/Leyn-pl/Snus">GitHub</a><a>|</a>
+            <a target="_blank" title="Мой дискорд сервер" href="https://discord.gg/CrvESbFBrR">Discord</a><a>|</a>
+            <a onclick="alert('Ещё не готово!')" title="Старая версия (WIP)">Old Version</a>
+            <p title="Версия: 1.4 публичная">Version: 1.4 public</p>
         </div>
     </body>
 </html>
