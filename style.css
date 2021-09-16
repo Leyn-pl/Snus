@@ -4,6 +4,9 @@ body {
 .button:hover {
     cursor: pointer;
 }
+#hbutton {
+    display: none;
+}
 .mid {
     text-align: center;
     align: center;
