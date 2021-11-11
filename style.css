@@ -15,3 +15,24 @@ body {
     text-align: left;
     font-size: 65%;
 }
+.gray {
+	color: gray
+}
+.black {
+	color: black;
+}
+.green {
+	color: green;
+}
+.blue {
+	color: blue;
+}
+.red {
+	color: red;
+}
+.purple {
+	color: purple;
+}
+.gold {
+	color: #dcba00;
+}
