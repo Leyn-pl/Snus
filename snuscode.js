@@ -1,6 +1,6 @@
-//Snus by LEYN v1.4 public
+//Snus by LEYN v1.4.1 public
 
-alert('СНЮС v1.4\nСоздатель этого (Лён) наюзался снюса. Чем больше у вас снюса, тем больше вы получаете снюскойнов  в секунду, но снюс дорожает. Вы можете кинуть снюс. Каждый кинутый снюс даёт +1% к получению снюскойнов. Чтобы пройти игру, нужно вкинуть 100000 снюса. После нажанитя кнопки конца игры вы откроете один из чит-кодов.')
+alert('СНЮС v1.4.1\nСоздатель этого (Лён) наюзался снюса. Чем больше у вас снюса, тем больше вы получаете снюскойнов  в секунду, но снюс дорожает. Вы можете кинуть снюс. Каждый кинутый снюс даёт +1% к получению снюскойнов. Чтобы пройти игру, нужно вкинуть 1.000.000.000 снюса. После нажанитя кнопки конца игры вы откроете один из чит-кодов. Наведите на слово в коллекции чтобы узнать сколько в нём снюса.')
 var snusval = 1
 var snuscoins = 100
 var snuscost = 10
@@ -8,18 +8,13 @@ var vkidval = 0
 var cheats = ""
 var victory = false
 var nolose = false
-
+var allsnus = 1
+var time = 0
+var secs = "00"
+var mins = "0"
+var prevvkid = 1000
+var prevbuy = 1000
 var n = 0
-var x1 = " снюс"
-var x10 = ""
-var x100 = ""
-var x1000 = ""
-for(n=0; n<10; n++){x10 += x1}
-for(n=0; n<10; n++){x100 += x10}
-for(n=0; n<10; n++){x1000 += x100}
-console.log(x10)
-console.log(x100)
-console.log(x1000)
 
 //Покупка снюса
 function snus(n){
@@ -33,29 +28,37 @@ function snus(n){
         if(buy){
             snusval += 1*n;
             snuscoins -= snuscost*n;
-            snuscost = Math.floor(snusval/15)+10;
+			allsnus += 1*n
+            snuscost = Math.floor(allsnus/15)+10;
             var val = document.getElementById("val");
             val.innerHTML = "Снюс: " + snusval + " | Снюскойнов: " + snuscoins + " | Снюса вкинуто: " + vkidval + cheats
             var val2 = document.getElementById("val2");
             val2.innerHTML = "Цена снюса: " + snuscost + " | Снюскойнов в секунду: " + Math.round(Math.floor(snusval/15)+1+((Math.floor(snusval/15)+1)*vkidval/100));
             var text = document.getElementById("text");
-            var i = n
-            while(Math.floor(i/1000) > 0){
-                text.innerHTML += x1000;
-                i -= 1000
-            }
-            while(Math.floor(i/100) > 0){
-                text.innerHTML += x100;
-                i -= 100
-            }
-            while(Math.floor(i/10) > 0){
-                text.innerHTML += x10;
-                i -= 10
-            }
-            while(i > 0){
-                text.innerHTML += x1;
-                i--
-            }
+			if(Math.random()*1000000/n<1){gold()};
+			if(n>=10000000000){
+				text.innerHTML += " <a class='purple' title="+n+">СНЮС</a>";
+			}else if(n>=1000000000){
+				text.innerHTML += " <a class='red' title="+n+">СНЮС</a>";
+			}else if(n>=100000000){
+				text.innerHTML += " <a class='blue' title="+n+">СНЮС</a>";
+			}else if(n>=10000000){
+				text.innerHTML += " <a class='green' title="+n+">СНЮС</a>";
+			}else if(n>=1000000){
+				text.innerHTML += " <a class='black' title="+n+">СНЮС</a>";
+			}else if(n>=100000){
+				text.innerHTML += " <a class='purple' title="+n+">снюс</a>";
+			}else if(n>=10000){
+				text.innerHTML += " <a class='red' title="+n+">снюс</a>";
+			}else if(n>=1000){
+				text.innerHTML += " <a class='blue' title="+n+">снюс</a>";
+			}else if(n>=100){
+				text.innerHTML += " <a class='green' title="+n+">снюс</a>";
+			}else if(n>=10){
+				text.innerHTML += " <a class='black' title="+n+">снюс</a>";
+			}else if(n>=1){
+				text.innerHTML += " <a class='gray' title="+n+">снюс</a>";
+			}
         }
     } else {alert("Тебе нужно " + snuscost*n + " снюскойнов!\n" + snuscoins + "/" + snuscost*n)}
     var max = document.getElementById("buyall");
@@ -72,14 +75,13 @@ function vkid(n){
             kinut = confirm("Вы потратите много снюса (" + n + ") на вкид!")
         }
         if(kinut){
-            if(victory != true && vkidval+n >= 100000){
-                alert("Вы прошли игру! Вы успешно вкинули 100000 снюса. Не представляю, как твоя губа ещё на месте...");
+            if(victory != true && vkidval+n >= 1000000000){
+                alert("Вы прошли игру! Вы успешно вкинули миллиард снюса. Не представляю, как твоя губа ещё на месте...");
                 victory = true;
-                document.getElementById("hbutton").style.display = "inline";
+                if(cheats != " | Читы"){document.getElementById("hbutton").style.display = "inline"};
             }
             vkidval += n;
             snusval -= n;
-            snuscost = Math.ceil(9+(snusval/15));
             var val = document.getElementById("val");
             val.innerHTML = "Снюс: " + snusval + " | Снюскойнов: " + snuscoins + " | Снюса вкинуто: " + vkidval + cheats;
             var val2 = document.getElementById("val2");
@@ -95,6 +97,13 @@ function addsc(){
         var end = confirm("У вас закончился снюс! Вы больше не получаете снюскойнов. Игра окончена. Нажите ОК чтобы начать сначала.");
         nolose = true;
     }
+	if(snusval+vkidval != allsnus){
+		alert("Попался, жалкий читер! Ну ничего, кто-то украл весь твой снюс!");
+		snusval = 1;
+		vkidval = 0;
+		allsnus = 1;
+		console.log("ЧИТЫ ОБНАРУЖЕНЫ!!!");
+	}
     if(end){restart()}
     let addval = Math.floor(snusval/15)+1
     snuscoins += Math.round(addval+(addval*vkidval/100));
@@ -118,17 +127,19 @@ function cheat(){
             cheats = " | Читы"
         } else {alert("Введите число!")}
     } else if(code == "imlazy") {
-        alert("Вы получили 10000 снюскойнов. Тебе реально лень ждать?")
-        snuscoins  += 10000
+        alert("Вы получили 10000 снюскойнов. Тебе реально лень ждать?");
+        snuscoins  += 10000;
         cheats = " | Читы"
     } else if(code == "tearlip") {
         alert("Вы украли 1000 снюса и вкинули его. Ваша губа порвана!");
-        vkidval += 1000
+        vkidval += 1000;
+		allsnus += 1000;
         cheats = " | Читы"
     } else if(code == "sellsnus") {
-        alert("Вы продали весь свой снюс (" + (snusval-1) + ") за " + (snusval-1)*snuscost + " снюскойнов. Но зачем?")
-        snuscoins += (snusval-1)*snuscost
-        snusval = 1
+        alert("Вы продали весь свой снюс (" + (snusval-1) + ") за " + (snusval-1)*snuscost + " снюскойнов. Но зачем?");
+        snuscoins += (snusval-1)*snuscost;
+		allsnus -= snusval-1
+        snusval = 1;
         var text = document.getElementById("text")
         text.innerHTML = "Снюс";
     } else if(code == "buildfactory") {
@@ -157,6 +168,7 @@ function editvar(){
         let x = prompt("Введите количество снюса: ", snusval)
         if(isNaN(x) != true){
             snusval = x*1
+			allsnus += x*1
         }else{alert("Введите число!")}
     } else if(varname == "snuscoins") {
         let x = prompt("Введите количество снюскойнов: ", snuscoins)
@@ -167,6 +179,7 @@ function editvar(){
         let x = prompt("Введите количество кинутого снюса: ", vkidval)
         if(isNaN(x) != true){
             vkidval = x*1
+			allsnus += x*1
         }else{alert("Введите число!")}
     } else if(varname == "snuscost") {
         let x = prompt("Введите цену снюса: ", snuscost)
@@ -181,9 +194,10 @@ function editvar(){
 
 //Купить [ ] снюса
 function scustom(){
-    let count = prompt("Сколько снюса купить?", 1000)
+    let count = prompt("Сколько снюса купить?", prevbuy)
     if(isNaN(count) != true){
-        snus(count*1)
+        snus(count*1);
+		prevbuy = count
     }else{
         alert("Введите число!")
     }
@@ -191,9 +205,10 @@ function scustom(){
 
 //Вкинуть [ ] снюса
 function vcustom(){
-    let count = prompt("Сколько снюса вкинуть?", 1000)
+    let count = prompt("Сколько снюса вкинуть?", prevvkid)
     if(isNaN(count) != true){
-        vkid(count*1)
+        vkid(count*1);
+		prevvid = count
     }else{
         alert("Введите число!")
     }
@@ -201,7 +216,7 @@ function vcustom(){
 
 //Рестарт
 function restart(){
-    r = confirm("Вы точно хотите начать сначала?")
+    var r = confirm("Вы точно хотите начать сначала?")
     if(r == true){
         location.reload()
     }
@@ -228,3 +243,26 @@ function endgame(){
     if(rand == 9){alert("tearlip")};
     document.getElementById("hbutton").style.display = "none";
 }
+
+//Вы не должны это видеть
+function secret(){
+	if(Math.floor(Math.random()*1000)==1){alert("Снимите стикер с камеры")}
+}
+setInterval(secret, 10000)
+
+//Золотой снюс
+function gold(){
+	alert("Вам выпал золотой снюс! Цена снюса снижена на 1%");
+	snuscost = Math.round(snuscost * 0.99);
+	text.innerHTML += " <i class='gold' title='Золотой снюс: цена снижена на 1%'>СНЮС</i>"
+}
+
+//Таймер
+function timer(){
+	time++
+	secs = time%60
+	mins = Math.floor(time/60)
+	if(secs<10){secs = "0"+secs}
+	document.getElementById("time").innerHTML = " | "+mins+":"+secs
+}
+setInterval(timer, 1000)
