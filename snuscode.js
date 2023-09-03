@@ -167,8 +167,8 @@ function editvar(){
     } else if(varname == "snusval") {
         let x = prompt("Введите количество снюса: ", snusval)
         if(isNaN(x) != true){
-            snusval = x*1
-			allsnus += x*1
+            snusval = x*1;
+	    allsnus = x*1+vkidval*1;
         }else{alert("Введите число!")}
     } else if(varname == "snuscoins") {
         let x = prompt("Введите количество снюскойнов: ", snuscoins)
@@ -178,8 +178,8 @@ function editvar(){
     } else if(varname == "vkidval") {
         let x = prompt("Введите количество кинутого снюса: ", vkidval)
         if(isNaN(x) != true){
-            vkidval = x*1
-			allsnus += x*1
+            vkidval = x*1;
+	    allsnus = x*1+snusval*1
         }else{alert("Введите число!")}
     } else if(varname == "snuscost") {
         let x = prompt("Введите цену снюса: ", snuscost)
