@@ -78,7 +78,11 @@ function vkid(n){
             if(victory != true && vkidval+n >= 1000000000){
                 alert("Вы прошли игру! Вы успешно вкинули миллиард снюса. Не представляю, как твоя губа ещё на месте...");
                 victory = true;
-                if(cheats != " | Читы"){document.getElementById("hbutton").style.display = "inline"};
+                if(cheats != " | Читы"){
+			document.getElementById("hbutton").style.display = "inline"
+		}else{
+			alert("Вы не получите чит-код, так как прошли игру с читами")
+		};
             }
             vkidval += n;
             snusval -= n;
