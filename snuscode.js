@@ -244,12 +244,6 @@ function endgame(){
     document.getElementById("hbutton").style.display = "none";
 }
 
-//Вы не должны это видеть
-function secret(){
-	if(Math.floor(Math.random()*1000)==1){alert("Снимите стикер с камеры")}
-}
-setInterval(secret, 10000)
-
 //Золотой снюс
 function gold(){
 	alert("Вам выпал золотой снюс! Цена снюса снижена на 1%");
@@ -264,5 +258,6 @@ function timer(){
 	mins = Math.floor(time/60)
 	if(secs<10){secs = "0"+secs}
 	document.getElementById("time").innerHTML = " | "+mins+":"+secs
+	if(Math.floor(Math.random()*600)<=1){alert("Снимите стикер с камеры")}
 }
 setInterval(timer, 1000)
